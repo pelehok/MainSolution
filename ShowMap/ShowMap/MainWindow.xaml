@@ -1,0 +1,52 @@
+﻿<Window x:Class="ShowMap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShowMap"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Viewport3D x:Name="Viewport3D" Margin="4,4,4,4">
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <Model3DGroup x:Name="DGroup">
+                        <AmbientLight Color="Green"></AmbientLight>
+                        <GeometryModel3D x:Name="Cube">
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D x:Name="Geometry3D"
+                                        Positions="-2 0 -2  2 0 -2  -2 0 2  2  0 2"
+                                        Normals="0 0 1  0 0 1  0 0 1  0 0 -1"
+                                        TriangleIndices="2 1 0  2 3 1 " />
+                                </GeometryModel3D.Geometry>
+
+                                <GeometryModel3D.Material>
+                                    <DiffuseMaterial>
+                                        <DiffuseMaterial.Brush>
+                                            <SolidColorBrush Color="Cyan" Opacity="0.3"/>
+                                        </DiffuseMaterial.Brush>
+                                    </DiffuseMaterial>
+                                </GeometryModel3D.Material>
+                        </GeometryModel3D>
+                    </Model3DGroup>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <ModelVisual3D>
+                <ModelVisual3D.Content>
+                    <DirectionalLight x:Name="dirLightMain" Direction="-1,-1,-1" Color="Gray"></DirectionalLight>
+                </ModelVisual3D.Content>
+            </ModelVisual3D>
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="myCamera" Position="300,250,300" LookDirection="-500,-500,-500" FieldOfView="60">
+                </PerspectiveCamera>
+            </Viewport3D.Camera>
+        </Viewport3D>
+        <Label x:Name="angleContent_y" Content="y-Axis: 0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0"></Label>
+        <Label x:Name="angleContent_x" Content="x-Axis: 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,354"></Label>
+
+        <ScrollBar x:Name="vScroll" Width="27" Margin="757,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" SmallChange="1" Minimum="-180" Maximum="180"
+                   Value="0" ValueChanged="ScrollBarVertical_OnValueChanged" Height="400"/>
+        <ScrollBar x:Name="hScroll" Width="742" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" LargeChange="10" SmallChange="1" Minimum="-180" Maximum="180"
+                   Value="0" ValueChanged="ScrollBarHorizontal_OnValueChanged" Height="25" Margin="10,391,0,0"/>
+    </Grid>
+</Window>
